@@ -116,9 +116,6 @@ export default function Navbar() {
               <GradeModal />
             </RiseModal>
           </Link>
-          <Link href="/trainee/mastery" className={styles.navbarItem}>
-            Mastery
-          </Link>
           <Link href="/contact" className={styles.navbarItem}>
             Contact
           </Link>
@@ -145,6 +142,12 @@ export default function Navbar() {
           </Link>
           <Link href="/manager/all-trainers" className={styles.navbarItem}>
             Trainers
+          </Link>
+          <Link
+            href="/manager/pending-validations"
+            className={styles.navbarItem}
+          >
+            Pending Validations
           </Link>
           <Link href="/contact" className={styles.navbarItem}>
             Contact

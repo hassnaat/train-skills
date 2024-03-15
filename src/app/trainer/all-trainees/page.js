@@ -85,7 +85,6 @@ const AllTrainees = () => {
               margin: "auto",
               cursor: "pointer",
             }}
-            onClick={() => router.push(`/trainer/trainee-profile/${item.id}`)}
           >
             <Image src={item.image} alt="" width={32} height={32} />
           </div>
@@ -173,7 +172,13 @@ const AllTrainees = () => {
             </div>
           </div>
         </div>
-        <CustomTable columns={columns} data={trainees} />
+        <CustomTable
+          columns={columns}
+          data={trainees}
+          onRowClick={(row, rowIndex) =>
+            router.push(`/trainer/trainee-profile/${row.id}`)
+          }
+        />
       </div>
       <div className={styles.addTrainee}>
         <div className={styles.addTraineeText}>Add A Trainee</div>

@@ -11,6 +11,7 @@ import {
   Paper,
 } from "@mui/material";
 import Image from "next/image";
+import styles from "./CustomTable.module.css";
 
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
@@ -59,7 +60,7 @@ const CustomTableCell = ({ column, item }) => {
   return item[column.id];
 };
 
-const CustomTable = ({ columns, data }) => {
+const CustomTable = ({ columns, data, onRowClick }) => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState(columns[0].id);
   const [page, setPage] = useState(0);
@@ -126,10 +127,18 @@ const CustomTable = ({ columns, data }) => {
 
           <TableBody>
             {paginatedData.map((row, rowIndex) => (
-              <TableRow key={rowIndex}>
+              <TableRow
+                key={rowIndex}
+                onClick={() => (onRowClick ? onRowClick(row, rowIndex) : null)}
+                className={styles.customTableRow}
+              >
                 {columns.map((column) => (
                   <TableCell key={column.id} align={column.align}>
-                    <CustomTableCell column={column} item={row} />
+                    <CustomTableCell
+                      column={column}
+                      item={row}
+                      onClick={(e) => e.stopPropagation()}
+                    />
                   </TableCell>
                 ))}
               </TableRow>

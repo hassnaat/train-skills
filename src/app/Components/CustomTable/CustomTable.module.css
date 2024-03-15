@@ -1,0 +1,6 @@
+.customTableRow {
+  cursor: pointer;
+}
+.customTableRow:hover {
+  background-color: rgba(245, 245, 245, 0.451);
+}

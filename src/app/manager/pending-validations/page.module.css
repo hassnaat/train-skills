@@ -1,0 +1,194 @@
+.trainersSection {
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tableWrap {
+  width: 100%;
+  max-width: 1168px;
+  border-radius: 8px;
+  border: 1px solid rgba(229, 233, 242, 1);
+}
+.tableWrapHeader {
+  padding: 15px 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tableWrapHeaderLeftTop {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+  color: rgba(4, 22, 66, 1);
+  margin-bottom: 20px;
+}
+.tableWrapHeaderLeftBottom {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  color: rgba(81, 85, 94, 1);
+}
+.tableWrapHeaderRight {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tableWrapHeaderSearchWrap {
+  border: 1px solid rgba(229, 233, 242, 1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  width: 320px;
+  max-width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  margin: 10px 0;
+  margin-right: 20px;
+}
+.tableWrapHeaderSearch {
+  flex: 1;
+  height: 100%;
+  outline: none;
+  border: none;
+}
+.tableWrapHeaderSort {
+  flex: 1;
+  height: 100%;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 320px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  width: 104px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid rgba(229, 233, 242, 1);
+  border-radius: 8px;
+}
+.sortIcon {
+  margin-left: 5px;
+}
+.tableInnerWrap {
+  max-width: 100%;
+  overflow-x: scroll;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 550px;
+}
+.eyeIconWrap {
+  margin: auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(246, 248, 250, 1);
+  cursor: pointer;
+}
+.tableHeader {
+  background: rgba(246, 248, 250, 1);
+}
+.tableHeader > td {
+  padding: 10px 5px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 17px;
+  letter-spacing: 0em;
+  color: rgba(4, 22, 66, 1);
+}
+.tableRow {
+  border-bottom: 1px solid rgba(229, 233, 242, 1);
+}
+.tableRow > td {
+  padding: 15px 5px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  color: rgba(81, 85, 94, 1);
+}
+.tableProfileImageWrap {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 32px;
+  height: 32px;
+  margin: auto;
+}
+
+.centerContent {
+  text-align: center !important;
+}
+.paginationWrap {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 20px;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.paginationRows {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: rgba(4, 22, 66, 1);
+  padding: 0 5px;
+}
+.PRtext {
+  margin-right: 10px;
+}
+.PRdropdown {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.paginationRight {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+.paginationCount {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: rgba(81, 85, 94, 1);
+  padding: 0 10px;
+}
+
+.paginationIcons span {
+  display: inline-block;
+  transform: scaleX(0.7);
+  transform: scaleY(1.4);
+  margin: 0 7px;
+  position: relative;
+  bottom: 2px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .tableWrapHeaderSort {
+    max-width: 100%;
+  }
+  .tableWrapHeaderSearchWrap {
+    width: 100%;
+    margin-right: 0;
+  }
+}

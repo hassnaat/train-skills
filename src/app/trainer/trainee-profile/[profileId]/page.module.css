@@ -186,6 +186,7 @@
   line-height: 20px;
   letter-spacing: -0.01em;
   margin: 20px;
+  cursor: pointer;
 }
 .masteryBtnFilled {
   background: rgba(213, 25, 57, 1);
