@@ -22,14 +22,14 @@ const columns = [
   },
   {
     id: "name",
-    label: "Trainer Name",
+    label: "Name",
     align: "left",
     type: "text",
     sortable: true,
   },
   {
-    id: "surname",
-    label: "Surname",
+    id: "grade",
+    label: "Grade",
     align: "left",
     type: "text",
     sortable: true,
@@ -63,6 +63,7 @@ const trainers = [
     image: "/images/client/profile.png",
     name: "Wade",
     surname: "Warren",
+    grade: "orange",
     date: "Dec 15, 2024",
   },
   {
@@ -71,6 +72,7 @@ const trainers = [
       "https://media.istockphoto.com/id/1388253782/photo/positive-successful-millennial-business-professional-man-head-shot-portrait.webp?b=1&s=170667a&w=0&k=20&c=KZM6TIhdaJAy28BA9sg0Sn-ZRd160F6HytdAKykza-s=",
     name: "John",
     surname: "Doe",
+    grade: "yellow",
     date: "Dec 15, 2024",
   },
   {
@@ -78,6 +80,7 @@ const trainers = [
     image: "/images/client/profile.png",
     name: "Wade",
     surname: "Warren",
+    grade: "orange",
     date: "Dec 15, 2024",
   },
   {
@@ -85,6 +88,7 @@ const trainers = [
     image: "/images/client/profile.png",
     name: "Wade",
     surname: "Warren",
+    grade: "blue",
     date: "Dec 15, 2024",
   },
   {
@@ -92,6 +96,7 @@ const trainers = [
     image: "/images/client/profile.png",
     name: "Wade",
     surname: "Warren",
+    grade: "yellow",
     date: "Dec 15, 2024",
   },
   {
@@ -99,6 +104,7 @@ const trainers = [
     image: "/images/client/profile.png",
     name: "Wade",
     surname: "Warren",
+    grade: "orange",
     date: "Dec 15, 2024",
   },
   {
@@ -106,6 +112,7 @@ const trainers = [
     image: "/images/client/profile.png",
     name: "Wade",
     surname: "Warren",
+    grade: "yellow",
     date: "Dec 15, 2024",
   },
   {
@@ -113,6 +120,7 @@ const trainers = [
     image: "/images/client/profile.png",
     name: "Wade",
     surname: "Warren",
+    grade: "blue",
     date: "Dec 15, 2024",
   },
 ];
