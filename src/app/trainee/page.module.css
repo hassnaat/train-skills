@@ -1,0 +1,22 @@
+.layoutWrap {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.navbarWrap {
+  padding: 10px 10%;
+}
+.contentWrap {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  padding: 0 10%;
+}
+@media (max-width: 600px) {
+  .navbarWrap {
+    padding: 10px 4%;
+  }
+  .contentWrap {
+    padding: 0 4%;
+  }
+}

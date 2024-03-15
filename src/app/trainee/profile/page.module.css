@@ -1,0 +1,123 @@
+.profilePage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.profileBox {
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+.profileImageGroup {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.profileImageWrap {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.addImage {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.profilePageForm {
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 24px;
+  background: rgba(246, 248, 250, 1);
+}
+.profilePageFormRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.profilePageFormCol {
+  flex: 1;
+  padding: 5px;
+  min-width: 250px;
+  pointer-events: none;
+}
+.logoutBtn {
+  width: 125px;
+  height: 48px;
+  border-radius: 6px;
+  background: rgba(213, 25, 57, 1);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.profileBtnWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+.profileCardSubheading {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(4, 22, 66, 1);
+  margin-bottom: 8px;
+}
+.trainerCardWrap {
+  display: flex;
+  padding: 0.7rem;
+  background-color: white;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(229, 233, 242, 1);
+}
+.trainerCardImage {
+  margin-right: 10px;
+}
+.trainerCardName {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+  color: rgba(42, 53, 71, 1);
+  margin-bottom: 5px;
+}
+.trainerCardLocation {
+  display: flex;
+  align-items: center;
+}
+.trainerCardLocationIcon {
+  margin-right: 4px;
+}
+.trainerCardLocationText {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  color: rgba(81, 85, 94, 1);
+}
+@media (max-width: 400px) {
+  .profilePageForm {
+    padding: 0.8rem;
+  }
+}

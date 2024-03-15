@@ -1,0 +1,77 @@
+.riseModal {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0.2rem 1rem 0.05rem rgba(87, 87, 87, 0.135);
+  z-index: 10000;
+  position: absolute;
+  min-height: 100px;
+  min-width: 100px;
+  width: fit-content;
+  animation: rise 0.3s linear;
+  cursor: default;
+  display: block;
+}
+.disappearModal {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0.2rem 1rem 0.05rem rgba(87, 87, 87, 0.135);
+  z-index: 10000;
+  position: absolute;
+  min-height: 100px;
+  min-width: 100px;
+  width: fit-content;
+  animation: disappear 0.3s linear;
+  cursor: default;
+  display: none;
+}
+.backdrop {
+  width: 100vw;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  position: fixed;
+  cursor: default;
+  z-index: 9999;
+}
+
+@media only screen and (min-width: 1190px) {
+  .riseModal * {
+    font-size: 0.732vw;
+  }
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(15px);
+    opacity: 0;
+    display: none;
+  }
+  1% {
+    display: block;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes disappear {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+    display: block;
+  }
+  99% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  100% {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .riseModal {
+    right: 0;
+    max-width: 180px;
+  }
+}
