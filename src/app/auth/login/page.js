@@ -55,7 +55,8 @@ export default function Login() {
     setData({ ...data, [name]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const user = users.find((item) => {
       return item.email === data.email;
     });
@@ -83,7 +84,7 @@ export default function Login() {
             Back To Previous{" "}
           </div>
 
-          <div className={styles.leftInnerBox}>
+          <form className={styles.leftInnerBox} onSubmit={handleSubmit}>
             <Image
               src="/images/logos/logo2.png"
               alt=""
@@ -129,10 +130,10 @@ export default function Login() {
                 placeholder="Enter password"
               />
             </div>
-            <button className={styles.loginBtn} onClick={handleSubmit}>
+            <button className={styles.loginBtn} type="submit">
               Login
             </button>
-          </div>
+          </form>
         </div>
       </div>
       <div className={styles.authSectionRight}>

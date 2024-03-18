@@ -73,7 +73,7 @@
   display: flex;
   justify-content: center;
 }
-.DetailsRight button {
+.DetailsRightBtn {
   width: 146px;
   height: 48px;
   background-color: transparent;
@@ -88,6 +88,8 @@
   align-items: center;
   cursor: pointer;
   margin: 10px 0;
+
+  text-decoration: none;
 }
 .homeSectionRight {
   display: flex;

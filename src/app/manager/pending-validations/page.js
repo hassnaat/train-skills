@@ -13,13 +13,13 @@ const columns = [
     type: "text",
     sortable: false,
   },
-  {
-    id: "image",
-    label: "Added By",
-    align: "center",
-    type: "image",
-    sortable: false,
-  },
+  // {
+  //   id: "image",
+  //   label: "Added By",
+  //   align: "center",
+  //   type: "image",
+  //   sortable: false,
+  // },
   {
     id: "name",
     label: "Name",

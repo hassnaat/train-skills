@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "../(ClientView)/components/Navbar/Navbar";
+import Navbar from "../Components/Navbar/Navbar";
 import ScreenLoader from "../Components/ScreenLoader/ScreenLoader";
 import { useRoleAuth } from "../hooks/useRoleAuth";
 import styles from "./page.module.css";

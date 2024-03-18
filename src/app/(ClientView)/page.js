@@ -2,6 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 export default function Home() {
   const user = useSelector((state) => state.user);
@@ -18,9 +19,13 @@ export default function Home() {
             Explore the world of martial arts with our platform. Connect with
             trainers, master new skills, and achieve your goals.
           </div>
-          <div className={styles.DetailsRight}>
-            <button>Join Now</button>
-          </div>
+          {!user?.name && (
+            <div className={styles.DetailsRight}>
+              <Link href="/auth/login" className={styles.DetailsRightBtn}>
+                Login Now
+              </Link>
+            </div>
+          )}
         </div>
       </div>
       <div className={styles.homeSectionRight}>
