@@ -55,7 +55,7 @@ const Grade = ({ params }) => {
         progress and achievements on your martial arts journey.
       </div>
 
-      <div className={styles.gradeSectionTableWrap}>
+      <div className="customTableWrap">
         <CustomTable
           columns={columns}
           data={data}

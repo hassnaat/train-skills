@@ -208,6 +208,7 @@
 .gradeSectionTableWrap {
   width: 100%;
   max-width: 630px;
+  padding-bottom: 20px;
 }
 .cautionText {
   font-size: 12px;

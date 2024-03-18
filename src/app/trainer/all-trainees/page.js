@@ -221,13 +221,15 @@ const AllTrainees = () => {
             </div>
           </div>
         </div>
-        <CustomTable
-          columns={columns}
-          data={trainees}
-          onRowClick={(row, rowIndex) =>
-            router.push(`/trainer/trainee-profile/${row.id}`)
-          }
-        />
+        <div className="customTableWrap">
+          <CustomTable
+            columns={columns}
+            data={trainees}
+            onRowClick={(row, rowIndex) =>
+              router.push(`/trainer/trainee-profile/${row.id}`)
+            }
+          />
+        </div>
       </div>
       <div className={styles.addTrainee}>
         <div className={styles.addTraineeText}>Add A Trainee</div>

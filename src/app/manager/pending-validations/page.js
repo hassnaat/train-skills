@@ -34,27 +34,27 @@ const columns = [
     type: "text",
     sortable: true,
   },
-  {
-    id: "view",
-    label: "View Profile",
-    align: "center",
-    type: "custom",
-    sortable: false,
-    customRender: (item) => {
-      return (
-        <div className={styles.eyeIconWrap}>
-          {" "}
-          <Image
-            src="/images/client/eye.png"
-            alt=""
-            width={16.5}
-            height={12}
-            className={styles.eyeIcon}
-          />
-        </div>
-      );
-    },
-  },
+  // {
+  //   id: "view",
+  //   label: "View Profile",
+  //   align: "center",
+  //   type: "custom",
+  //   sortable: false,
+  //   customRender: (item) => {
+  //     return (
+  //       <div className={styles.eyeIconWrap}>
+  //         {" "}
+  //         <Image
+  //           src="/images/client/eye.png"
+  //           alt=""
+  //           width={16.5}
+  //           height={12}
+  //           className={styles.eyeIcon}
+  //         />
+  //       </div>
+  //     );
+  //   },
+  // },
 ];
 
 const trainers = [
@@ -165,14 +165,15 @@ const PendingValidations = () => {
             </div> */}
           </div>
         </div>
-
-        <CustomTable
-          columns={columns}
-          data={trainers}
-          onRowClick={(row, rowIndex) =>
-            router.push(`/manager/grade/${row.id}`)
-          }
-        />
+        <div className="customTableWrap">
+          <CustomTable
+            columns={columns}
+            data={trainers}
+            onRowClick={(row, rowIndex) =>
+              router.push(`/manager/grade/${row.id}`)
+            }
+          />
+        </div>
       </div>
     </div>
   );
