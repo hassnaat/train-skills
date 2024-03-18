@@ -4,19 +4,25 @@
   height: 100vh;
   position: relative;
 }
+
 .navbarWrap {
   position: relative;
 }
+
 .contentWrap {
   flex: 1;
   overflow-y: auto;
   width: 100%;
   padding: 0 10%;
+  padding-top: 60px;
   min-height: fit-content;
+  position: relative;
 }
+
 @media (max-width: 600px) {
   .contentWrap {
     padding: 0 4%;
     padding-bottom: 20px;
+    padding-top: 60px;
   }
 }
