@@ -170,6 +170,7 @@
   }
   .navbarWrapper {
     flex-direction: column;
+    padding: 20px 5%;
   }
   .navbarBrand {
     position: absolute;
