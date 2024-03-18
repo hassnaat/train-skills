@@ -4,7 +4,7 @@
   height: 100vh;
 }
 .navbarWrap {
-  padding: 10px 10%;
+  position: relative;
 }
 .contentWrap {
   flex: 1;

@@ -5,7 +5,6 @@
   position: relative;
 }
 .navbarWrap {
-  margin: 10px 10%;
   position: relative;
 }
 .contentWrap {
@@ -15,9 +14,6 @@
   padding: 0 10%;
 }
 @media (max-width: 600px) {
-  .navbarWrap {
-    margin: 10px 4%;
-  }
   .contentWrap {
     padding: 0 4%;
   }

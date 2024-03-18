@@ -81,250 +81,251 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <>
-      <div className={styles.navbarPlaceholder}></div>
-      <nav
-        className={`${styles.navbarWrapper} ${
-          collapsed ? styles.navbarCollapsed : styles.navbarExpanded
-        }`}
-      >
-        <Link href="/">
-          <Image
-            src="/images/logos/logo.png"
-            className={styles.navbarBrand}
-            alt=""
-            width={215}
-            height={32}
-          />
-        </Link>
-        {user?.type === "trainee" && (
-          <div className={styles.navbarItems}>
-            <Link
-              href="/"
-              className={`${styles.navbarItem} ${
-                pathname === "/" ? styles.navbarItemActive : ""
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              href="#"
-              className={`${styles.navbarItem} ${
-                pathname.startsWith("/trainee/grades")
-                  ? styles.navbarItemActive
-                  : ""
-              }`}
-              onMouseEnter={() => setModal("grades")}
-              onMouseLeave={() => setModal("")}
-            >
-              Grad
-              <RiseModal
-                open={modal === "grades"}
-                setOpen={setModal}
-                onClose={() => {}}
-                style={{ left: "-50px" }}
-              >
-                <GradeModal role="trainee" />
-              </RiseModal>
-            </Link>
-            <Link
-              href="/contact"
-              className={`${styles.navbarItem} ${
-                pathname === "/contact" ? styles.navbarItemActive : ""
-              }`}
-            >
-              Contact
-            </Link>
-          </div>
-        )}
-        {user?.type === "trainer" && (
-          <div className={styles.navbarItems}>
-            <Link
-              href="/"
-              className={`${styles.navbarItem} ${
-                pathname === "/" ? styles.navbarItemActive : ""
-              }`}
-            >
-              Home
-            </Link>
-
-            <Link
-              href="/trainer/all-trainees"
-              className={`${styles.navbarItem} ${
-                pathname === "/trainer/all-trainees"
-                  ? styles.navbarItemActive
-                  : ""
-              }`}
-            >
-              Trainees
-            </Link>
-            <Link
-              href="#"
-              className={`${styles.navbarItem} ${
-                pathname.startsWith("/trainer/grades")
-                  ? styles.navbarItemActive
-                  : ""
-              }`}
-              onMouseEnter={() => setModal("grades")}
-              onMouseLeave={() => setModal("")}
-            >
-              Grad
-              <RiseModal
-                open={modal === "grades"}
-                setOpen={setModal}
-                onClose={() => {}}
-                style={{ left: "-50px" }}
-              >
-                <GradeModal role="trainer" />
-              </RiseModal>
-            </Link>
-            <Link
-              href="/contact"
-              className={`${styles.navbarItem} ${
-                pathname === "/contact" ? styles.navbarItemActive : ""
-              }`}
-            >
-              Contact
-            </Link>
-          </div>
-        )}
-        {user?.type === "manager" && (
-          <div className={styles.navbarItems}>
-            <Link
-              href="/"
-              className={`${styles.navbarItem} ${
-                pathname === "/" ? styles.navbarItemActive : ""
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              href="/manager/all-trainers"
-              className={`${styles.navbarItem} ${
-                pathname === "/manager/all-trainers"
-                  ? styles.navbarItemActive
-                  : ""
-              }`}
-            >
-              Trainers
-            </Link>
-            <Link
-              href="#"
-              className={`${styles.navbarItem} ${
-                pathname.startsWith("/manager/grades")
-                  ? styles.navbarItemActive
-                  : ""
-              }`}
-              onMouseEnter={() => setModal("grades")}
-              onMouseLeave={() => setModal("")}
-            >
-              Grad
-              <RiseModal
-                open={modal === "grades"}
-                setOpen={setModal}
-                onClose={() => {}}
-                style={{ left: "-50px" }}
-              >
-                <GradeModal role="manager" />
-              </RiseModal>
-            </Link>
-            <Link
-              href="/manager/pending-validations"
-              className={`${styles.navbarItem} ${
-                pathname === "/manager/pending-validations"
-                  ? styles.navbarItemActive
-                  : ""
-              }`}
-            >
-              Pending Validations
-            </Link>
-            <Link
-              href="/contact"
-              className={`${styles.navbarItem} ${
-                pathname === "/contact" ? styles.navbarItemActive : ""
-              }`}
-            >
-              Contact
-            </Link>
-          </div>
-        )}
-        {!user?.type && (
-          <div className={styles.navbarItems}>
-            <Link
-              href="/"
-              className={`${styles.navbarItem} ${
-                pathname === "/" ? styles.navbarItemActive : ""
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              href="/contact"
-              className={`${styles.navbarItem} ${
-                pathname === "/contact" ? styles.navbarItemActive : ""
-              }`}
-            >
-              Contact
-            </Link>
-          </div>
-        )}
-
-        {!user?.type && (
-          <Link href="/auth/login" className={styles.navbarLoginBtn}>
-            Login
+    <div className={styles.navbarOuterWrap}>
+      <div className={styles.navbarPlaceholder}>
+        <nav
+          className={`${styles.navbarWrapper} ${
+            collapsed ? styles.navbarCollapsed : styles.navbarExpanded
+          }`}
+        >
+          <Link href="/">
+            <Image
+              src="/images/logos/logo.png"
+              className={styles.navbarBrand}
+              alt=""
+              width={215}
+              height={32}
+            />
           </Link>
-        )}
-        {user?.type && (
-          <div
-            className={styles.navbarProfileWrap}
-            onMouseEnter={() => setModal("profile")}
-            onMouseLeave={() => setModal("")}
-          >
-            <RiseModal
-              open={modal === "profile"}
-              setOpen={setModal}
-              onClose={() => {}}
-              style={{ left: "-30px", top: "48px" }}
-            >
-              <ProfileModal user={user} />
-            </RiseModal>
-
-            <div className={styles.navbarProfileImageWrap}>
-              <Image
-                src="/images/client/profile.png"
-                className={styles.navbarProfileImage}
-                alt=""
-                width={48}
-                height={48}
-              />
+          {user?.type === "trainee" && (
+            <div className={styles.navbarItems}>
+              <Link
+                href="/"
+                className={`${styles.navbarItem} ${
+                  pathname === "/" ? styles.navbarItemActive : ""
+                }`}
+              >
+                Home
+              </Link>
+              <Link
+                href="#"
+                className={`${styles.navbarItem} ${
+                  pathname.startsWith("/trainee/grades")
+                    ? styles.navbarItemActive
+                    : ""
+                }`}
+                onMouseEnter={() => setModal("grades")}
+                onMouseLeave={() => setModal("")}
+              >
+                Grad
+                <RiseModal
+                  open={modal === "grades"}
+                  setOpen={setModal}
+                  onClose={() => {}}
+                  style={{ left: "-50px" }}
+                >
+                  <GradeModal role="trainee" />
+                </RiseModal>
+              </Link>
+              <Link
+                href="/contact"
+                className={`${styles.navbarItem} ${
+                  pathname === "/contact" ? styles.navbarItemActive : ""
+                }`}
+              >
+                Contact
+              </Link>
             </div>
-            <div className={styles.navbarProfileRight}>
-              <div className={styles.navbarProfileName}>
-                {user.name}{" "}
+          )}
+          {user?.type === "trainer" && (
+            <div className={styles.navbarItems}>
+              <Link
+                href="/"
+                className={`${styles.navbarItem} ${
+                  pathname === "/" ? styles.navbarItemActive : ""
+                }`}
+              >
+                Home
+              </Link>
+
+              <Link
+                href="/trainer/all-trainees"
+                className={`${styles.navbarItem} ${
+                  pathname === "/trainer/all-trainees"
+                    ? styles.navbarItemActive
+                    : ""
+                }`}
+              >
+                Trainees
+              </Link>
+              <Link
+                href="#"
+                className={`${styles.navbarItem} ${
+                  pathname.startsWith("/trainer/grades")
+                    ? styles.navbarItemActive
+                    : ""
+                }`}
+                onMouseEnter={() => setModal("grades")}
+                onMouseLeave={() => setModal("")}
+              >
+                Grad
+                <RiseModal
+                  open={modal === "grades"}
+                  setOpen={setModal}
+                  onClose={() => {}}
+                  style={{ left: "-50px" }}
+                >
+                  <GradeModal role="trainer" />
+                </RiseModal>
+              </Link>
+              <Link
+                href="/contact"
+                className={`${styles.navbarItem} ${
+                  pathname === "/contact" ? styles.navbarItemActive : ""
+                }`}
+              >
+                Contact
+              </Link>
+            </div>
+          )}
+          {user?.type === "manager" && (
+            <div className={styles.navbarItems}>
+              <Link
+                href="/"
+                className={`${styles.navbarItem} ${
+                  pathname === "/" ? styles.navbarItemActive : ""
+                }`}
+              >
+                Home
+              </Link>
+              <Link
+                href="/manager/all-trainers"
+                className={`${styles.navbarItem} ${
+                  pathname === "/manager/all-trainers"
+                    ? styles.navbarItemActive
+                    : ""
+                }`}
+              >
+                Trainers
+              </Link>
+              <Link
+                href="#"
+                className={`${styles.navbarItem} ${
+                  pathname.startsWith("/manager/grades")
+                    ? styles.navbarItemActive
+                    : ""
+                }`}
+                onMouseEnter={() => setModal("grades")}
+                onMouseLeave={() => setModal("")}
+              >
+                Grad
+                <RiseModal
+                  open={modal === "grades"}
+                  setOpen={setModal}
+                  onClose={() => {}}
+                  style={{ left: "-50px" }}
+                >
+                  <GradeModal role="manager" />
+                </RiseModal>
+              </Link>
+              <Link
+                href="/manager/pending-validations"
+                className={`${styles.navbarItem} ${
+                  pathname === "/manager/pending-validations"
+                    ? styles.navbarItemActive
+                    : ""
+                }`}
+              >
+                Pending Validations
+              </Link>
+              <Link
+                href="/contact"
+                className={`${styles.navbarItem} ${
+                  pathname === "/contact" ? styles.navbarItemActive : ""
+                }`}
+              >
+                Contact
+              </Link>
+            </div>
+          )}
+          {!user?.type && (
+            <div className={styles.navbarItems}>
+              <Link
+                href="/"
+                className={`${styles.navbarItem} ${
+                  pathname === "/" ? styles.navbarItemActive : ""
+                }`}
+              >
+                Home
+              </Link>
+              <Link
+                href="/contact"
+                className={`${styles.navbarItem} ${
+                  pathname === "/contact" ? styles.navbarItemActive : ""
+                }`}
+              >
+                Contact
+              </Link>
+            </div>
+          )}
+
+          {!user?.type && (
+            <Link href="/auth/login" className={styles.navbarLoginBtn}>
+              Login
+            </Link>
+          )}
+          {user?.type && (
+            <div
+              className={styles.navbarProfileWrap}
+              onMouseEnter={() => setModal("profile")}
+              onMouseLeave={() => setModal("")}
+            >
+              <RiseModal
+                open={modal === "profile"}
+                setOpen={setModal}
+                onClose={() => {}}
+                style={{ left: "-30px", top: "48px" }}
+              >
+                <ProfileModal user={user} />
+              </RiseModal>
+
+              <div className={styles.navbarProfileImageWrap}>
                 <Image
-                  src="/images/client/drop-down.png"
-                  className={styles.navbarProfiledrop}
+                  src="/images/client/profile.png"
+                  className={styles.navbarProfileImage}
                   alt=""
-                  width={8}
-                  height={6}
+                  width={48}
+                  height={48}
                 />
               </div>
-              <div className={styles.navbarProfileGrade}>
-                {user.grade} Grade
+              <div className={styles.navbarProfileRight}>
+                <div className={styles.navbarProfileName}>
+                  {user.name}{" "}
+                  <Image
+                    src="/images/client/drop-down.png"
+                    className={styles.navbarProfiledrop}
+                    alt=""
+                    width={8}
+                    height={6}
+                  />
+                </div>
+                <div className={styles.navbarProfileGrade}>
+                  {user.grade} Grade
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        <div
-          className={`${styles.navbarToggle}`}
-          onClick={() => setCollapsed(!collapsed)}
-        >
-          <div className={styles.navbarToggleBar}></div>
-          <div className={styles.navbarToggleBar}></div>
-          <div className={styles.navbarToggleBar}></div>
-        </div>
-      </nav>
-    </>
+          <div
+            className={`${styles.navbarToggle}`}
+            onClick={() => setCollapsed(!collapsed)}
+          >
+            <div className={styles.navbarToggleBar}></div>
+            <div className={styles.navbarToggleBar}></div>
+            <div className={styles.navbarToggleBar}></div>
+          </div>
+        </nav>
+      </div>
+    </div>
   );
 }
