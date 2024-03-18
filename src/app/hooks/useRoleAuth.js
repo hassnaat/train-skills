@@ -10,7 +10,10 @@ export const useRoleAuth = (allowedRoles) => {
 
   useEffect(() => {
     const role = user?.type;
-    if (role && !allowedRoles.includes(role)) {
+    console.log(role, allowedRoles);
+    if (!role) {
+      router.replace("/");
+    } else if (role && !allowedRoles.includes(role)) {
       router.replace("/");
     } else {
       setIsLoading(false);
