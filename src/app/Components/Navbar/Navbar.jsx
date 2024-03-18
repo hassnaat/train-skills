@@ -52,7 +52,7 @@ const ProfileModal = ({ user, setCollapsed }) => {
   return (
     <div className={styles.profileModal}>
       <Link
-        // onClick={() => setCollapsed(true)}
+        onClick={() => setCollapsed(true)}
         href={profileLinks[user?.type] ?? "#"}
         className={styles.profileModalItem}
       >
