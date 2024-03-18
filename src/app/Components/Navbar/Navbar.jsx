@@ -8,19 +8,28 @@ import { useSelector } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/app/hooks/useAuth";
 
-const GradeModal = ({ role }) => {
+const GradeModal = ({ role, setCollapsed }) => {
   return (
     <div className={styles.gradeModal}>
-      <Link href={`/${role}/grades/yellow`} className={styles.gradeModalItem}>
+      <Link
+        onClick={() => setCollapsed(true)}
+        href={`/${role}/grades/yellow`}
+        className={styles.gradeModalItem}
+      >
         Yellow
       </Link>
       <Link
+        onClick={() => setCollapsed(true)}
         href={`/${role}/grades/orange`}
         className={`${styles.gradeModalItem} ${styles.gradeModalItemBordered}`}
       >
         Orange
       </Link>
-      <Link href={`/${role}/grades/blue`} className={styles.gradeModalItem}>
+      <Link
+        onClick={() => setCollapsed(true)}
+        href={`/${role}/grades/blue`}
+        className={styles.gradeModalItem}
+      >
         Blue
       </Link>
     </div>
@@ -33,7 +42,7 @@ const profileLinks = {
   manager: "/manager/profile",
 };
 
-const ProfileModal = ({ user }) => {
+const ProfileModal = ({ user, setCollapsed }) => {
   const { logout } = useAuth();
   const router = useRouter();
   const handleLogout = () => {
@@ -43,6 +52,7 @@ const ProfileModal = ({ user }) => {
   return (
     <div className={styles.profileModal}>
       <Link
+        onClick={() => setCollapsed(true)}
         href={profileLinks[user?.type] ?? "#"}
         className={styles.profileModalItem}
       >
@@ -88,7 +98,7 @@ export default function Navbar() {
             collapsed ? styles.navbarCollapsed : styles.navbarExpanded
           }`}
         >
-          <Link href="/">
+          <Link onClick={() => setCollapsed(true)} href="/">
             <Image
               src="/images/logos/logo.png"
               className={styles.navbarBrand}
@@ -100,6 +110,7 @@ export default function Navbar() {
           {user?.type === "trainee" && (
             <div className={styles.navbarItems}>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/"
                 className={`${styles.navbarItem} ${
                   pathname === "/" ? styles.navbarItemActive : ""
@@ -124,10 +135,11 @@ export default function Navbar() {
                   onClose={() => {}}
                   style={{ left: "-50px" }}
                 >
-                  <GradeModal role="trainee" />
+                  <GradeModal role="trainee" setCollapsed={setCollapsed} />
                 </RiseModal>
               </Link>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/contact"
                 className={`${styles.navbarItem} ${
                   pathname === "/contact" ? styles.navbarItemActive : ""
@@ -140,6 +152,7 @@ export default function Navbar() {
           {user?.type === "trainer" && (
             <div className={styles.navbarItems}>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/"
                 className={`${styles.navbarItem} ${
                   pathname === "/" ? styles.navbarItemActive : ""
@@ -149,6 +162,7 @@ export default function Navbar() {
               </Link>
 
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/trainer/all-trainees"
                 className={`${styles.navbarItem} ${
                   pathname === "/trainer/all-trainees"
@@ -175,10 +189,11 @@ export default function Navbar() {
                   onClose={() => {}}
                   style={{ left: "-50px" }}
                 >
-                  <GradeModal role="trainer" />
+                  <GradeModal role="trainer" setCollapsed={setCollapsed} />
                 </RiseModal>
               </Link>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/contact"
                 className={`${styles.navbarItem} ${
                   pathname === "/contact" ? styles.navbarItemActive : ""
@@ -191,6 +206,7 @@ export default function Navbar() {
           {user?.type === "manager" && (
             <div className={styles.navbarItems}>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/"
                 className={`${styles.navbarItem} ${
                   pathname === "/" ? styles.navbarItemActive : ""
@@ -199,6 +215,7 @@ export default function Navbar() {
                 Home
               </Link>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/manager/all-trainers"
                 className={`${styles.navbarItem} ${
                   pathname === "/manager/all-trainers"
@@ -225,10 +242,11 @@ export default function Navbar() {
                   onClose={() => {}}
                   style={{ left: "-50px" }}
                 >
-                  <GradeModal role="manager" />
+                  <GradeModal role="manager" setCollapsed={setCollapsed} />
                 </RiseModal>
               </Link>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/manager/pending-validations"
                 className={`${styles.navbarItem} ${
                   pathname === "/manager/pending-validations"
@@ -239,6 +257,7 @@ export default function Navbar() {
                 Pending Validations
               </Link>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/contact"
                 className={`${styles.navbarItem} ${
                   pathname === "/contact" ? styles.navbarItemActive : ""
@@ -251,6 +270,7 @@ export default function Navbar() {
           {!user?.type && (
             <div className={styles.navbarItems}>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/"
                 className={`${styles.navbarItem} ${
                   pathname === "/" ? styles.navbarItemActive : ""
@@ -259,6 +279,7 @@ export default function Navbar() {
                 Home
               </Link>
               <Link
+                onClick={() => setCollapsed(true)}
                 href="/contact"
                 className={`${styles.navbarItem} ${
                   pathname === "/contact" ? styles.navbarItemActive : ""
@@ -270,7 +291,11 @@ export default function Navbar() {
           )}
 
           {!user?.type && (
-            <Link href="/auth/login" className={styles.navbarLoginBtn}>
+            <Link
+              onClick={() => setCollapsed(true)}
+              href="/auth/login"
+              className={styles.navbarLoginBtn}
+            >
               Login
             </Link>
           )}
@@ -286,7 +311,7 @@ export default function Navbar() {
                 onClose={() => {}}
                 style={{ left: "-30px", top: "48px" }}
               >
-                <ProfileModal user={user} />
+                <ProfileModal user={user} setCollapsed={setCollapsed} />
               </RiseModal>
 
               <div className={styles.navbarProfileImageWrap}>

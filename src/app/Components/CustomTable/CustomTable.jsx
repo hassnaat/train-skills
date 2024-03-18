@@ -154,6 +154,7 @@ const CustomTable = ({ columns, data, onRowClick }) => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{ overflowX: "hidden" }}
       />
     </Paper>
   );

@@ -4,6 +4,8 @@ import styles from "./trainees.module.css";
 import Image from "next/image";
 import CustomTable from "@/app/Components/CustomTable/CustomTable";
 import { useRouter } from "next/navigation";
+import useScreenWidth from "@/app/hooks/useScreenWidth";
+import { useEffect, useState } from "react";
 
 const trainees = [
   {
@@ -64,76 +66,123 @@ const trainees = [
     latestGrade: "blue",
   },
 ];
+const initialColumns = [
+  {
+    id: "image",
+    label: "",
+    align: "center",
+    type: "custom",
+    sortable: false,
+    customRender: (item) => {
+      return (
+        <div
+          style={{
+            borderRadius: "50%",
+            overflow: "hidden",
+            width: "32px",
+            height: "32px",
+            margin: "auto",
+            cursor: "pointer",
+          }}
+        >
+          <Image src={item.image} alt="" width={32} height={32} />
+        </div>
+      );
+    },
+  },
+  {
+    id: "name",
+    label: "Trainee Name",
+    align: "left",
+    type: "text",
+    sortable: true,
+  },
+  {
+    id: "surname",
+    label: "Surname",
+    align: "left",
+    type: "text",
+    sortable: true,
+  },
+  {
+    id: "latestGrade",
+    label: "Latest Grade",
+    align: "left",
+    type: "text",
+    sortable: true,
+  },
+  {
+    id: "action",
+    label: "Action",
+    align: "center",
+    type: "custom",
+    sortable: false,
+    customRender: (item) => {
+      return (
+        <div className={styles.redCrossIconWrap}>
+          {" "}
+          <Image
+            src="/images/client/red-cross.png"
+            alt=""
+            width={20}
+            height={20}
+            className={styles.redCrossIcon}
+          />
+        </div>
+      );
+    },
+  },
+];
+const mobileColumns = [
+  {
+    id: "name",
+    label: "Trainee Name",
+    align: "left",
+    type: "text",
+    sortable: true,
+  },
+  {
+    id: "surname",
+    label: "Surname",
+    align: "left",
+    type: "text",
+    sortable: true,
+  },
 
+  {
+    id: "action",
+    label: "Action",
+    align: "center",
+    type: "custom",
+    sortable: false,
+    customRender: (item) => {
+      return (
+        <div className={styles.redCrossIconWrap}>
+          {" "}
+          <Image
+            src="/images/client/red-cross.png"
+            alt=""
+            width={20}
+            height={20}
+            className={styles.redCrossIcon}
+          />
+        </div>
+      );
+    },
+  },
+];
 const AllTrainees = () => {
   const router = useRouter();
-  const columns = [
-    {
-      id: "image",
-      label: "",
-      align: "center",
-      type: "custom",
-      sortable: false,
-      customRender: (item) => {
-        return (
-          <div
-            style={{
-              borderRadius: "50%",
-              overflow: "hidden",
-              width: "32px",
-              height: "32px",
-              margin: "auto",
-              cursor: "pointer",
-            }}
-          >
-            <Image src={item.image} alt="" width={32} height={32} />
-          </div>
-        );
-      },
-    },
-    {
-      id: "name",
-      label: "Trainee Name",
-      align: "left",
-      type: "text",
-      sortable: true,
-    },
-    {
-      id: "surname",
-      label: "Surname",
-      align: "left",
-      type: "text",
-      sortable: true,
-    },
-    {
-      id: "latestGrade",
-      label: "Latest Grade",
-      align: "left",
-      type: "text",
-      sortable: true,
-    },
-    {
-      id: "action",
-      label: "Action",
-      align: "center",
-      type: "custom",
-      sortable: false,
-      customRender: (item) => {
-        return (
-          <div className={styles.redCrossIconWrap}>
-            {" "}
-            <Image
-              src="/images/client/red-cross.png"
-              alt=""
-              width={20}
-              height={20}
-              className={styles.redCrossIcon}
-            />
-          </div>
-        );
-      },
-    },
-  ];
+  const screenWidth = useScreenWidth();
+  const [columns, setColumns] = useState(initialColumns);
+
+  useEffect(() => {
+    if (screenWidth < 960) {
+      setColumns(mobileColumns);
+    } else {
+      setColumns(initialColumns);
+    }
+  }, [screenWidth]);
   return (
     <div className={styles.traineesSection}>
       <div className={styles.tableWrap}>
