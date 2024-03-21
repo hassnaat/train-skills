@@ -177,7 +177,7 @@
   align-items: center;
   padding: 5px 4%;
   display: none;
-  z-index: 9999999999999999999999999999;
+  z-index: 555555;
 }
 .mobnavHeader {
   width: 100%;
@@ -192,7 +192,7 @@
   transform: scaleY(0);
   transition: 0.3s;
   background-color: white;
-  z-index: 9999999999999999999999999999;
+  z-index: 555555;
 }
 .mobnavExpanded {
   transform: scaleY(1);
