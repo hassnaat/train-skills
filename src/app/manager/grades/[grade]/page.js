@@ -10,26 +10,6 @@ const columns = [
     type: "text",
     sortable: true,
   },
-  {
-    id: "status",
-    label: "Status",
-    align: "center",
-    type: "custom",
-    sortable: false,
-    customRender: (item) => {
-      return (
-        <div
-          className={
-            item?.status?.toLowerCase() === "completed"
-              ? styles.completedStatus
-              : styles.pendingStatus
-          }
-        >
-          {item?.status}
-        </div>
-      );
-    },
-  },
 ];
 
 const data = [

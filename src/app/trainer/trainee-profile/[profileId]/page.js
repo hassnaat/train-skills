@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 import CustomTable from "@/app/Components/CustomTable/CustomTable";
 import ReportIcon from "@mui/icons-material/Report";
 const data = [
-  { name: "Martery 1", status: "Completed" },
-  { name: "Martery 2", status: "Pending" },
-  { name: "Martery 3", status: "Pending" },
-  { name: "Martery 4", status: "Pending" },
-  { name: "Martery 5", status: "Pending" },
-  { name: "Martery 6", status: "Pending" },
+  { id: 1, name: "Martery 1", status: "Completed" },
+  { id: 2, name: "Martery 2", status: "Pending" },
+  { id: 3, name: "Martery 3", status: "Pending" },
+  { id: 4, name: "Martery 4", status: "Pending" },
+  { id: 5, name: "Martery 5", status: "Pending" },
+  { id: 6, name: "Martery 6", status: "Pending" },
 ];
 const columns = [
   {
@@ -143,6 +143,7 @@ const Profile = ({ params }) => {
           />
         </div>
         <div className={styles.profileHeading}>{trainee?.name}</div>
+        <div className={styles.profileSurname}>{trainee?.surname}</div>
         <div className={styles.profilelabel}>LE-12123321</div>
         <div className={styles.profileGradeWrap}>
           Latest Garde:{" "}
@@ -172,7 +173,13 @@ const Profile = ({ params }) => {
           ))}
         </div> */}
         <div className={styles.gradeSectionTableWrap}>
-          <CustomTable columns={columns} data={data} />
+          <CustomTable
+            columns={columns}
+            data={data}
+            onRowClick={(row, rowIndex) => {
+              router.push(`/trainer/mastery/${row.id}`);
+            }}
+          />
         </div>
         <div className={styles.masteryBtns}>
           {["orange", "yellow"].includes(trainee?.latestGrade) && (

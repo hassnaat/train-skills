@@ -92,7 +92,7 @@ export default function Login() {
               height={40}
               className={styles.logo}
             />
-            <h3 className={styles.loginHeading}>Welcome to TRAINSKILLS</h3>
+            {/* <h3 className={styles.loginHeading}>Welcome to TRAINSKILLS</h3> */}
             <p className={styles.logindesc}>
               Please log in to access exclusive features and make the most of
               your stay.

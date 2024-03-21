@@ -57,6 +57,14 @@
   text-align: center;
   color: rgba(4, 22, 66, 1);
 }
+.profileSurname {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 1px 0 5px 0;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(81, 85, 94, 1);
+}
 .profileLabel {
   font-size: 14px;
   font-weight: 400;

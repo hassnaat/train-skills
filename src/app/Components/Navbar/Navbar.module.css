@@ -55,8 +55,6 @@
   text-decoration: none;
 }
 .navbarToggle {
-  position: absolute;
-  right: 0;
   background: rgba(213, 25, 57, 1);
   width: 35px;
   height: 30px;
@@ -168,9 +166,56 @@
   color: rgba(81, 85, 94, 1);
 }
 
+.mobnavWrap {
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 4%;
+  display: none;
+  z-index: 9999999999999999999999999999;
+}
+.mobnavHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mobnav_menu {
+  width: 90%;
+  position: absolute;
+  top: 50px;
+  transform: scaleY(0);
+  transition: 0.3s;
+  background-color: white;
+  z-index: 9999999999999999999999999999;
+}
+.mobnavExpanded {
+  transform: scaleY(1);
+}
+.submenuWrap {
+  width: 100%;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+.submenuWrap > * {
+  background-color: rgba(237, 236, 236, 0.226);
+}
+.expandedSubmenu {
+  max-height: 1000px;
+}
 @media (max-width: 960px) {
+  .mobnavWrap {
+    display: flex;
+  }
+
   .navbarOuterWrap {
     padding: 0 4%;
+    display: none;
   }
   .navbarToggle {
     display: flex;
@@ -178,13 +223,11 @@
   .navbarWrapper {
     flex-direction: column;
   }
-  .navbarBrand {
-    position: absolute;
-    left: 0;
-  }
+
   .navbarItems {
     flex-direction: column;
     padding-top: 30px;
+    width: 100%;
   }
   .navbarItem {
     width: 100%;
