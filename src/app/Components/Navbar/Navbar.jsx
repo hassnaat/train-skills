@@ -282,6 +282,26 @@ export default function Navbar() {
                   Home
                 </Link>
                 <Link
+                  href="#"
+                  className={`${styles.navbarItem} ${
+                    pathname.startsWith("/grades")
+                      ? styles.navbarItemActive
+                      : ""
+                  }`}
+                  onMouseEnter={() => setModal("grades")}
+                  onMouseLeave={() => setModal("")}
+                >
+                  Grade
+                  <RiseModal
+                    open={modal === "grades"}
+                    setOpen={setModal}
+                    onClose={() => {}}
+                    style={{ left: "-50px" }}
+                  >
+                    <GradeModal role="trainee" setCollapsed={setCollapsed} />
+                  </RiseModal>
+                </Link>
+                <Link
                   onClick={() => setCollapsed(true)}
                   href="/contact"
                   className={`${styles.navbarItem} ${

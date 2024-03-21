@@ -207,14 +207,21 @@
   background-color: rgba(237, 236, 236, 0.226);
 }
 .expandedSubmenu {
-  max-height: 1000px;
-  padding-bottom: 10px;
+  transition: max-height 0.9s;
+  max-height: 700px;
 }
 @media (max-width: 960px) {
   .mobnavWrap {
     display: flex;
   }
-
+  .backdrop {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+  }
   .navbarOuterWrap {
     padding: 0 4%;
     display: none;

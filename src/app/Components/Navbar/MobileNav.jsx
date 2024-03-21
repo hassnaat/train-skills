@@ -28,6 +28,12 @@ const MobileNav = () => {
   };
   return (
     <nav className={styles.mobnavWrap}>
+      {!collapsed && (
+        <div
+          className={styles.backdrop}
+          onClick={() => setCollapsed(true)}
+        ></div>
+      )}
       <div className={styles.mobnavHeader}>
         <Link onClick={() => setCollapsed(true)} href="/">
           <Image
