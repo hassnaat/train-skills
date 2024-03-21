@@ -250,8 +250,16 @@
     max-height: 580px;
     animation: expandOverflow 0.3s;
   }
+  .navbarProfileOuterWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .navbarProfileWrap {
     margin-top: 20px;
+  }
+  .profileModalItem {
+    justify-content: center;
   }
 }
 
