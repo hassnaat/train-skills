@@ -201,13 +201,13 @@
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.5s;
-  padding-bottom: 10px;
 }
 .submenuWrap > * {
   background-color: rgba(237, 236, 236, 0.226);
 }
 .expandedSubmenu {
   max-height: 1000px;
+  padding-bottom: 10px;
 }
 @media (max-width: 960px) {
   .mobnavWrap {
