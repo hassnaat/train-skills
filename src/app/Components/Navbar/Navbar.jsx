@@ -14,21 +14,21 @@ const GradeModal = ({ role, setCollapsed }) => {
     <div className={styles.gradeModal}>
       <Link
         onClick={() => setCollapsed(true)}
-        href={`/${role}/grades/yellow`}
+        href={`${role !== "" ? "/" : ""}${role}/grades/yellow`}
         className={styles.gradeModalItem}
       >
         Yellow
       </Link>
       <Link
         onClick={() => setCollapsed(true)}
-        href={`/${role}/grades/orange`}
+        href={`${role !== "" ? "/" : ""}${role}/grades/orange`}
         className={`${styles.gradeModalItem} ${styles.gradeModalItemBordered}`}
       >
         Orange
       </Link>
       <Link
         onClick={() => setCollapsed(true)}
-        href={`/${role}/grades/blue`}
+        href={`${role !== "" ? "/" : ""}${role}/grades/blue`}
         className={styles.gradeModalItem}
       >
         Blue
@@ -298,7 +298,7 @@ export default function Navbar() {
                     onClose={() => {}}
                     style={{ left: "-50px" }}
                   >
-                    <GradeModal role="trainee" setCollapsed={setCollapsed} />
+                    <GradeModal role="" setCollapsed={setCollapsed} />
                   </RiseModal>
                 </Link>
                 <Link
