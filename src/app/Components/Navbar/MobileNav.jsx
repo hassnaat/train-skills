@@ -31,7 +31,7 @@ const MobileNav = () => {
       <div className={styles.mobnavHeader}>
         <Link onClick={() => setCollapsed(true)} href="/">
           <Image
-            src="/images/logos/logo.png"
+            src="/images/logos/logo.svg"
             className={styles.navbarBrand}
             alt=""
             width={150}
