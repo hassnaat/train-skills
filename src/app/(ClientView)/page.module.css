@@ -5,6 +5,7 @@
 }
 .navbarWrap {
   position: relative;
+  z-index: 100000;
 }
 .contentWrap {
   flex: 1;
