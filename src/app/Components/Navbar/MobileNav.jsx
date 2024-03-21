@@ -72,8 +72,9 @@ const MobileNav = () => {
                   ? styles.navbarItemActive
                   : ""
               }`}
-              onMouseEnter={() => setModal("grades")}
-              onMouseLeave={() => setModal("")}
+              onClick={() =>
+                setSubmenu(submenu === "grades" ? false : "grades")
+              }
             >
               Grade
             </Link>
@@ -145,8 +146,9 @@ const MobileNav = () => {
                   ? styles.navbarItemActive
                   : ""
               }`}
-              onMouseEnter={() => setModal("grades")}
-              onMouseLeave={() => setModal("")}
+              onClick={() =>
+                setSubmenu(submenu === "grades" ? false : "grades")
+              }
             >
               Grade
             </Link>
