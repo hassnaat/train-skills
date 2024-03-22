@@ -1,7 +1,7 @@
 .layoutWrap {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
   position: relative;
 }
 
@@ -23,6 +23,7 @@
 @media (max-width: 600px) {
   .contentWrap {
     padding: 0 4%;
+    margin-top: 50px;
     padding-bottom: 20px;
     padding-top: 60px;
   }

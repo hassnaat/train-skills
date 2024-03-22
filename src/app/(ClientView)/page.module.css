@@ -1,7 +1,7 @@
 .clientWrap {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
 }
 .navbarWrap {
   position: relative;
@@ -104,6 +104,7 @@
 
   .contentWrap {
     padding: 0 5%;
+    margin-top: 50px;
   }
 }
 @media (max-width: 630px) {
