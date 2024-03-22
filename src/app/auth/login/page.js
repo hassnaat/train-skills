@@ -86,7 +86,7 @@ export default function Login() {
 
           <form className={styles.leftInnerBox} onSubmit={handleSubmit}>
             <Image
-              src="/images/logos/logo2.png"
+              src="/images/logos/logo.svg"
               alt=""
               width={268}
               height={40}

@@ -18,7 +18,11 @@ const page = () => {
         training.
       </div>
       <div className={styles.masteryBtns}>
-        <div className={styles.masteryBtnOutlined}>Validate Mastery</div>
+        <label for="validateMastery" className={styles.masteryBtnOutlined}>
+          {" "}
+          <input hidden id="validateMastery" type="file" />
+          Validate Mastery
+        </label>
         <div className={styles.masteryBtnFilled}>Unvalidate Mastery</div>
       </div>
     </div>

@@ -183,9 +183,10 @@ const Profile = ({ params }) => {
         </div>
         <div className={styles.masteryBtns}>
           {["orange", "yellow"].includes(trainee?.latestGrade) && (
-            <div className={styles.masteryBtnOutlined}>
+            <label className={styles.masteryBtnOutlined} for="validateGrade">
+              <input hidden id="validateGrade" type="file" />
               Validate {trainee?.latestGrade} Grade
-            </div>
+            </label>
           )}
           {["blue"].includes(trainee?.latestGrade) && (
             <>

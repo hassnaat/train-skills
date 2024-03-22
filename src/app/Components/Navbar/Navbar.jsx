@@ -106,8 +106,8 @@ export default function Navbar() {
                 src="/images/logos/logo.svg"
                 className={styles.navbarBrand}
                 alt=""
-                width={215}
-                height={32}
+                width={255}
+                height={50}
               />
             </Link>
             {user?.type === "trainee" && (

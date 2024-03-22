@@ -17,7 +17,7 @@ const Grade = () => {
         <CustomTextField textarea={true} placeholder="Comment" />
       </div>
       <div className={styles.gradeBtns}>
-        <div className={styles.gradeBtnOutlined}>Validate</div>
+        <label className={styles.gradeBtnOutlined}>Validate</label>
         <div className={styles.gradeBtnFilled}>Unvalidate</div>
       </div>
     </div>
