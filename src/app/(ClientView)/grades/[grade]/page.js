@@ -40,7 +40,7 @@ const Grade = ({ params }) => {
           columns={columns}
           data={data}
           onRowClick={(row, rowIndex) => {
-            router.push(`/manager/mastery/${params?.grade}/${row.id}`);
+            router.push(`/mastery/${params?.grade}/${row.id}`);
           }}
         />
       </div>
