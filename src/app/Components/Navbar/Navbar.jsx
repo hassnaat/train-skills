@@ -4,35 +4,27 @@ import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import RiseModal from "../../(ClientView)/components/RiseModal/RiseModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/app/hooks/useAuth";
 import MobileNav from "./MobileNav";
+import { fetchGrades } from "@/services/grades";
+import { getUser } from "@/services/user";
 
-const GradeModal = ({ role, setCollapsed }) => {
+const GradeModal = ({ role, setCollapsed, grades }) => {
   return (
     <div className={styles.gradeModal}>
-      <Link
-        onClick={() => setCollapsed(true)}
-        href={`${role !== "" ? "/" : ""}${role}/grades/yellow`}
-        className={styles.gradeModalItem}
-      >
-        Yellow
-      </Link>
-      <Link
-        onClick={() => setCollapsed(true)}
-        href={`${role !== "" ? "/" : ""}${role}/grades/orange`}
-        className={`${styles.gradeModalItem} ${styles.gradeModalItemBordered}`}
-      >
-        Orange
-      </Link>
-      <Link
-        onClick={() => setCollapsed(true)}
-        href={`${role !== "" ? "/" : ""}${role}/grades/blue`}
-        className={styles.gradeModalItem}
-      >
-        Blue
-      </Link>
+      {grades?.map((grade) => {
+        return (
+          <Link
+            onClick={() => setCollapsed(true)}
+            href={`${role !== "" ? "/" : ""}${role}/grades/${grade?.id}`}
+            className={styles.gradeModalItem}
+          >
+            {grade?.title}
+          </Link>
+        );
+      })}
     </div>
   );
 };
@@ -46,10 +38,12 @@ const profileLinks = {
 const ProfileModal = ({ user, setCollapsed }) => {
   const { logout } = useAuth();
   const router = useRouter();
+
   const handleLogout = () => {
     logout();
-    router.push("/");
+    router.replace("/");
   };
+
   return (
     <div className={styles.profileModal}>
       <Link
@@ -89,11 +83,34 @@ export default function Navbar() {
   const [collapsed, setCollapsed] = useState(true);
   const [modal, setModal] = useState("");
   const user = useSelector((state) => state.user);
+  const [profile, setProfile] = useState();
   const pathname = usePathname();
+  const [grades, setGrades] = useState();
 
+  const getAllGrades = async () => {
+    try {
+      const response = await fetchGrades();
+      setGrades(response?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getProfile = async () => {
+    try {
+      const response = await getUser();
+      setProfile(response?.data);
+      useDispatch;
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getAllGrades();
+    if (user?.token) {
+      getProfile();
+    }
+  }, [user]);
   return (
     <>
-      <MobileNav />
+      <MobileNav grades={grades} profile={profile} />
       <div className={styles.navbarOuterWrap}>
         <div className={styles.navbarPlaceholder}>
           <nav
@@ -138,7 +155,11 @@ export default function Navbar() {
                     onClose={() => {}}
                     style={{ left: "-50px" }}
                   >
-                    <GradeModal role="trainee" setCollapsed={setCollapsed} />
+                    <GradeModal
+                      grades={grades}
+                      role="trainee"
+                      setCollapsed={setCollapsed}
+                    />
                   </RiseModal>
                 </Link>
                 <Link
@@ -192,7 +213,11 @@ export default function Navbar() {
                     onClose={() => {}}
                     style={{ left: "-50px" }}
                   >
-                    <GradeModal role="trainer" setCollapsed={setCollapsed} />
+                    <GradeModal
+                      grades={grades}
+                      role="trainer"
+                      setCollapsed={setCollapsed}
+                    />
                   </RiseModal>
                 </Link>
                 <Link
@@ -245,7 +270,11 @@ export default function Navbar() {
                     onClose={() => {}}
                     style={{ left: "-50px" }}
                   >
-                    <GradeModal role="manager" setCollapsed={setCollapsed} />
+                    <GradeModal
+                      grades={grades}
+                      role="manager"
+                      setCollapsed={setCollapsed}
+                    />
                   </RiseModal>
                 </Link>
                 <Link
@@ -298,7 +327,11 @@ export default function Navbar() {
                     onClose={() => {}}
                     style={{ left: "-50px" }}
                   >
-                    <GradeModal role="" setCollapsed={setCollapsed} />
+                    <GradeModal
+                      grades={grades}
+                      role=""
+                      setCollapsed={setCollapsed}
+                    />
                   </RiseModal>
                 </Link>
                 <Link
@@ -340,7 +373,7 @@ export default function Navbar() {
 
                 <div className={styles.navbarProfileImageWrap}>
                   <Image
-                    src="/images/client/profile.png"
+                    src={`${process.env.BASE_URL}/images/profile/${profile?.id}`}
                     className={styles.navbarProfileImage}
                     alt=""
                     width={48}
@@ -349,7 +382,7 @@ export default function Navbar() {
                 </div>
                 <div className={styles.navbarProfileRight}>
                   <div className={styles.navbarProfileName}>
-                    {user.name}{" "}
+                    {profile?.name}{" "}
                     <Image
                       src="/images/client/drop-down.png"
                       className={styles.navbarProfiledrop}
@@ -359,7 +392,7 @@ export default function Navbar() {
                     />
                   </div>
                   <div className={styles.navbarProfileGrade}>
-                    {user.grade} Grade
+                    {profile?.type}
                   </div>
                 </div>
               </div>

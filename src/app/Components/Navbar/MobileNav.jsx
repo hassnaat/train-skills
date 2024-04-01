@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { useAuth } from "@/app/hooks/useAuth";
+import { fetchGrades } from "@/services/grades";
 
 const profileLinks = {
   trainee: "/trainee/profile",
@@ -13,7 +14,7 @@ const profileLinks = {
   manager: "/manager/profile",
 };
 
-const MobileNav = () => {
+const MobileNav = ({ grades, profile }) => {
   const [collapsed, setCollapsed] = useState(true);
   const [submenu, setSubmenu] = useState(true);
   const [modal, setModal] = useState("");
@@ -24,8 +25,9 @@ const MobileNav = () => {
 
   const handleLogout = () => {
     logout();
-    router.push("/");
+    router.replace("/");
   };
+
   return (
     <nav className={styles.mobnavWrap}>
       {!collapsed && (
@@ -89,27 +91,17 @@ const MobileNav = () => {
                 submenu === "grades" ? styles.expandedSubmenu : ""
               }`}
             >
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/trainee/grades/yellow`}
-                className={styles.navbarItem}
-              >
-                Yellow
-              </Link>
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/trainee/grades/orange`}
-                className={`${styles.navbarItem} `}
-              >
-                Orange
-              </Link>
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/trainee/grades/blue`}
-                className={styles.navbarItem}
-              >
-                Blue
-              </Link>
+              {grades?.map((grade) => {
+                return (
+                  <Link
+                    onClick={() => setCollapsed(true)}
+                    href={`/trainee/grades/${grade?.id}`}
+                    className={styles.navbarItem}
+                  >
+                    {grade?.title}
+                  </Link>
+                );
+              })}
             </div>
             <Link
               onClick={() => setCollapsed(true)}
@@ -163,27 +155,17 @@ const MobileNav = () => {
                 submenu === "grades" ? styles.expandedSubmenu : ""
               }`}
             >
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/trainer/grades/yellow`}
-                className={styles.navbarItem}
-              >
-                Yellow
-              </Link>
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/trainer/grades/orange`}
-                className={`${styles.navbarItem} `}
-              >
-                Orange
-              </Link>
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/trainer/grades/blue`}
-                className={styles.navbarItem}
-              >
-                Blue
-              </Link>
+              {grades?.map((grade) => {
+                return (
+                  <Link
+                    onClick={() => setCollapsed(true)}
+                    href={`/trainer/grades/${grade?.id}`}
+                    className={styles.navbarItem}
+                  >
+                    {grade?.title}
+                  </Link>
+                );
+              })}
             </div>
             <Link
               onClick={() => setCollapsed(true)}
@@ -236,27 +218,17 @@ const MobileNav = () => {
                 submenu === "grades" ? styles.expandedSubmenu : ""
               }`}
             >
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/manager/grades/yellow`}
-                className={styles.navbarItem}
-              >
-                Yellow
-              </Link>
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/manager/grades/orange`}
-                className={`${styles.navbarItem} `}
-              >
-                Orange
-              </Link>
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/manager/grades/blue`}
-                className={styles.navbarItem}
-              >
-                Blue
-              </Link>
+              {grades?.map((grade) => {
+                return (
+                  <Link
+                    onClick={() => setCollapsed(true)}
+                    href={`/manager/grades/${grade?.id}`}
+                    className={styles.navbarItem}
+                  >
+                    {grade?.title}
+                  </Link>
+                );
+              })}
             </div>
             <Link
               onClick={() => setCollapsed(true)}
@@ -307,27 +279,17 @@ const MobileNav = () => {
                 submenu === "grades" ? styles.expandedSubmenu : ""
               }`}
             >
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/grades/yellow`}
-                className={styles.navbarItem}
-              >
-                Yellow
-              </Link>
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/grades/orange`}
-                className={`${styles.navbarItem} `}
-              >
-                Orange
-              </Link>
-              <Link
-                onClick={() => setCollapsed(true)}
-                href={`/grades/blue`}
-                className={styles.navbarItem}
-              >
-                Blue
-              </Link>
+              {grades?.map((grade) => {
+                return (
+                  <Link
+                    onClick={() => setCollapsed(true)}
+                    href={`/grades/${grade?.id}`}
+                    className={styles.navbarItem}
+                  >
+                    {grade?.title}
+                  </Link>
+                );
+              })}
             </div>
             <Link
               onClick={() => setCollapsed(true)}
@@ -368,7 +330,7 @@ const MobileNav = () => {
               </div>
               <div className={styles.navbarProfileRight}>
                 <div className={styles.navbarProfileName}>
-                  {user.name}{" "}
+                  {profile?.name}{" "}
                   <Image
                     src="/images/client/drop-down.png"
                     className={styles.navbarProfiledrop}
@@ -377,9 +339,7 @@ const MobileNav = () => {
                     height={6}
                   />
                 </div>
-                <div className={styles.navbarProfileGrade}>
-                  {user.grade} Grade
-                </div>
+                <div className={styles.navbarProfileGrade}>{profile?.type}</div>
               </div>
             </div>
             <div

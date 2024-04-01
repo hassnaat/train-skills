@@ -6,63 +6,29 @@ import FormGroup from "@/app/(ClientView)/components/CustomTextField/FormGroup";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "@/store/slices/userSlice";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useAuth } from "@/app/hooks/useAuth";
+import { loginUser } from "@/services/user";
 export default function Login() {
   const [data, setData] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { login } = useAuth();
-
-  const users = [
-    {
-      email: "trainee@test.com",
-      password: "trainee",
-      name: "Ben Malgech",
-      firstname: "Karim",
-      birthdate: "1999-07-12T22:00:00.000Z",
-      photo: "/pictures/profiles/default.png",
-      licence_number: "15428012HP",
-      type: "trainee",
-      code: "BG22JDJ12D01LM12",
-      grade: "Orange",
-    },
-    {
-      email: "trainer@test.com",
-      password: "trainer",
-      name: "Ben Malgech",
-      firstname: "Karim",
-      birthdate: "1999-07-12T22:00:00.000Z",
-      photo: "/pictures/profiles/default.png",
-      licence_number: "15428012HP",
-      type: "trainer",
-      code: "BG22JDJ12D01LM12",
-      grade: "Silver",
-    },
-    {
-      email: "manager@test.com",
-      password: "manager",
-      name: "Ben Malgech",
-      firstname: "Karim",
-      birthdate: "1999-07-12T22:00:00.000Z",
-      photo: "/pictures/profiles/default.png",
-      licence_number: "15428012HP",
-      type: "manager",
-      code: "BG22JDJ12D01LM12",
-      grade: "Gold",
-    },
-  ];
 
   const handleChange = (name, value) => {
     setData({ ...data, [name]: value });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = users.find((item) => {
-      return item.email === data.email;
-    });
-    if (user) {
+    setLoading(true);
+    try {
+      const user = await loginUser(data.email, data.password);
+      login({ token: user?.data?.token, type: user?.data?.userType });
       router.push("/");
-      login(user);
+    } catch (error) {
+      console.error("Login failed:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -130,8 +96,16 @@ export default function Login() {
                 placeholder="Enter password"
               />
             </div>
-            <button className={styles.loginBtn} type="submit">
-              Login
+            <button
+              className={styles.loginBtn}
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <CircularProgress size={24} color="inherit" />
+              ) : (
+                "Login"
+              )}
             </button>
           </form>
         </div>

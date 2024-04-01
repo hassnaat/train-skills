@@ -4,24 +4,26 @@ import styles from "./trainers.module.css";
 import Image from "next/image";
 import CustomTable from "@/app/Components/CustomTable/CustomTable";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getTrainersForManager } from "@/services/manager/trainers";
 
 const columns = [
   {
-    id: "image",
+    id: "photo",
     label: "",
     align: "center",
     type: "image",
     sortable: false,
   },
   {
-    id: "name",
+    id: "firstname",
     label: "Trainer Name",
     align: "left",
     type: "text",
     sortable: true,
   },
   {
-    id: "surname",
+    id: "name",
     label: "Surname",
     align: "left",
     type: "text",
@@ -112,6 +114,18 @@ const trainers = [
 
 const AllTrainers = () => {
   const router = useRouter();
+  const [trainers, setTrainers] = useState();
+  const getAllTrainers = async (page, perPage) => {
+    try {
+      const response = await getTrainersForManager(page, perPage);
+      setTrainers(response?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getAllTrainers();
+  }, []);
   return (
     <div className={styles.trainersSection}>
       <div className={styles.tableWrap}>
@@ -154,7 +168,9 @@ const AllTrainers = () => {
         <div className={styles.customTableWrap}>
           <CustomTable
             columns={columns}
-            data={trainers}
+            data={trainers?.trainerList ?? []}
+            totalCount={trainers?.totalCount}
+            getData={getAllTrainers}
             onRowClick={(row, rowIndex) =>
               router.push(`/manager/trainer-profile/${row.id}`)
             }

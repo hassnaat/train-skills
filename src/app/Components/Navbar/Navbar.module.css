@@ -76,7 +76,7 @@
 
 .gradeModal {
   width: 220px;
-  height: 158px;
+  min-height: 158px;
   padding: 5px 15px;
   border-radius: 12px;
   background-color: white;
@@ -90,7 +90,7 @@
   position: absolute;
 }
 .gradeModalItem {
-  height: 33%;
+  height: 40px;
   display: flex;
   align-items: center;
   font-size: 12px;

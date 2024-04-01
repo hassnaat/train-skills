@@ -19,7 +19,7 @@ export default function Home() {
             Explore the world of martial arts with our platform. Connect with
             trainers, master new skills, and achieve your goals.
           </div>
-          {!user?.name && (
+          {!user?.type && (
             <div className={styles.DetailsRight}>
               <Link href="/auth/login" className={styles.DetailsRightBtn}>
                 Login Now

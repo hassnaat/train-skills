@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -14,13 +14,13 @@ import Image from "next/image";
 import styles from "./CustomTable.module.css";
 
 function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
+  const stabilizedThis = array?.map((el, index) => [el, index]);
+  stabilizedThis?.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis?.map((el) => el[0]);
 }
 
 function getComparator(order, orderBy) {
@@ -39,8 +39,25 @@ function descendingComparator(a, b, orderBy) {
   return 0;
 }
 
+const isValidHttpUrl = (string) => {
+  let url;
+
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+
+  return url.protocol === "http:" || url.protocol === "https:";
+};
+
 const CustomTableCell = ({ column, item }) => {
+  const [imgSrc, setImgSrc] = useState(item[column.id]);
+  const defaultPlaceholder =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
+
   if (column.type === "image") {
+    const imageUrl = isValidHttpUrl(imgSrc) ? imgSrc : defaultPlaceholder;
     return (
       <div
         style={{
@@ -51,7 +68,13 @@ const CustomTableCell = ({ column, item }) => {
           margin: "auto",
         }}
       >
-        <Image src={item[column.id]} alt="" width={32} height={32} />
+        <Image
+          src={imageUrl}
+          alt=""
+          width={32}
+          height={32}
+          onError={() => setImgSrc(defaultPlaceholder)}
+        />
       </div>
     );
   } else if (column.type === "custom" && column.customRender) {
@@ -59,8 +82,13 @@ const CustomTableCell = ({ column, item }) => {
   }
   return item[column.id];
 };
-
-const CustomTable = ({ columns, data, onRowClick }) => {
+const CustomTable = ({
+  columns,
+  data,
+  onRowClick,
+  getData,
+  totalCount = 1,
+}) => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState(columns[0].id);
   const [page, setPage] = useState(0);
@@ -77,18 +105,23 @@ const CustomTable = ({ columns, data, onRowClick }) => {
     setOrderBy(property);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const handleChangePage = async (event, newPage) => {
+    if (!getData) {
+      setPage(newPage);
+      return;
+    }
+    getData(newPage, rowsPerPage);
+    setPage(newPage, rowsPerPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    getData(page, 1);
+    setPage(1);
   };
 
-  // Sort and paginate the data
   const sortedData = stableSort(data, getComparator(order, orderBy));
-  const paginatedData = sortedData.slice(
+  const paginatedData = sortedData?.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   );
@@ -126,7 +159,7 @@ const CustomTable = ({ columns, data, onRowClick }) => {
           </TableHead>
 
           <TableBody>
-            {paginatedData.map((row, rowIndex) => (
+            {paginatedData?.map((row, rowIndex) => (
               <TableRow
                 key={rowIndex}
                 onClick={() => (onRowClick ? onRowClick(row, rowIndex) : null)}
@@ -147,9 +180,9 @@ const CustomTable = ({ columns, data, onRowClick }) => {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[5, 10, 15, 20, 25]}
         component="div"
-        count={data.length}
+        count={totalCount}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

@@ -3,6 +3,9 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import FormGroup from "@/app/(ClientView)/components/CustomTextField/FormGroup";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getUser } from "@/services/user";
+import { useAuth } from "@/app/hooks/useAuth";
 
 const TrainerCard = ({ name, image, address }) => {
   return (
@@ -32,7 +35,23 @@ const TrainerCard = ({ name, image, address }) => {
 };
 
 const Profile = () => {
-  const data = useSelector((state) => state.user);
+  const [data, setData] = useState();
+  const { logout } = useAuth();
+  const getProfile = async () => {
+    try {
+      const response = await getUser();
+      setData(response.data);
+    } catch (error) {}
+  };
+
+  const handleLogout = () => {
+    logout();
+    router.replace("/");
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
   return (
     <div className={styles.profilePage}>
       <div className={styles.profileBox}>
@@ -117,7 +136,7 @@ const Profile = () => {
               />
             </div>
           </div>
-          <div className={styles.profileCardSubheading}>Trainers</div>
+          {/* <div className={styles.profileCardSubheading}>Trainers</div>
           <div className={styles.profilePageFormRow}>
             <div className={styles.profilePageFormCol}>
               <TrainerCard
@@ -134,10 +153,12 @@ const Profile = () => {
                 address="St. Kitts & Nevis"
               />
             </div>
-          </div>
+          </div> */}
           <div className={styles.profileBtnWrap}>
             {" "}
-            <div className={styles.logoutBtn}>Logout</div>
+            <div className={styles.logoutBtn} onClick={handleLogout}>
+              Logout
+            </div>
           </div>
         </div>
       </div>
