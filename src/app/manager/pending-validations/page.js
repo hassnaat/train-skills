@@ -4,6 +4,8 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import CustomTable from "@/app/Components/CustomTable/CustomTable";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { getPendingValidations } from "@/services/manager/validations";
 
 const columns = [
   {
@@ -127,6 +129,14 @@ const trainers = [
 
 const PendingValidations = () => {
   const router = useRouter();
+  const [data, setData] = useState();
+  const getData = async (page, perPage) => {
+    const response = await getPendingValidations(page, perPage);
+    setData(response?.data);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div className={styles.trainersSection}>
       <div className={styles.tableWrap}>
@@ -168,7 +178,7 @@ const PendingValidations = () => {
         <div className="customTableWrap">
           <CustomTable
             columns={columns}
-            data={trainers}
+            data={data}
             onRowClick={(row, rowIndex) =>
               router.push(`/manager/grade/${row.id}`)
             }
